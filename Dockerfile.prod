@@ -1,0 +1,4 @@
+FROM pangyuteng/matlab-foobar:dev
+
+WORKDIR /opt/myapp
+COPY --chmod=777 bin /opt/myapp/bin
