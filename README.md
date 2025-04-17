@@ -1,6 +1,9 @@
 # matlab-mcc-htcondor
-compile matlab code with mcc and submit job via htcondor
-
+```
+a hello world for 
+compiling matlab code with mcc 
+and submit job to run the compiled code via htcondor
+```
 
 + clone repo, setup git lfs for matlab binary
 ```
@@ -20,9 +23,8 @@ build_and_push_dev.sh
 + develop/test your code
 
 ```
---init --rm
 
-docker run -it --shm-size=512M \
+docker run --init --rm -it --shm-size=512M \
   -v $PWD:/opt/myapp \
   pangyuteng/matlab-foobar:dev \
   bash
@@ -67,10 +69,21 @@ build_and_push_prod.sh
 + test out production container
 
 ```
-docker run -it --shm-size=512M \
+docker run --init --rm -it --shm-size=512M \
   -w /opt/myapp/bin pangyuteng/matlab-foobar:prod \
   bash
 bash run_quux.sh /opt/matlab/R2024a 1
+
 ```
 
 + test execution via condor
+
+```
+condor_submit condor.sub
+
+# check printout in log/*.out
+cat log/*.out
+
+# the values in argFloat should match the input arguments provided in `condor.sub`
+
+```
