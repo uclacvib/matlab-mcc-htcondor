@@ -11,8 +11,8 @@ output = log/$(cluster).$(process).out
 error = log/$(cluster).$(process).err
 log = log/$(cluster).$(process).log
 
-#requirements = (Arch == "X86_64" && OpSys =="LINUX")
-requirements = Machine == "xxx.ad.medctr.ucla.edu"
+requirements = (Arch == "X86_64" && OpSys =="LINUX")
+#requirements = Machine == "xxx.ad.medctr.ucla.edu"
 
 # 512MB for matlab? https://www.mathworks.com/help/cloudcenter/ug/matlab-container-on-docker-hub.html
 +DevShmSize = 536870912
