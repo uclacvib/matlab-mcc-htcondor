@@ -6,20 +6,19 @@ executable = run.sh
 transfer_input_files = run.sh
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_output_files = output.nii.gz
 
 output = log/$(cluster).$(process).out
 error = log/$(cluster).$(process).err
 log = log/$(cluster).$(process).log
 
-requirements = (Arch == "X86_64" && OpSys =="LINUX")
-#requirements = Machine == "xxxx.ad.medctr.ucla.edu"
+#requirements = (Arch == "X86_64" && OpSys =="LINUX")
+requirements = Machine == "xxx.ad.medctr.ucla.edu"
 
-# for 8GB
-+DevShmSize = 8589934592
+# 512MB for matlab? https://www.mathworks.com/help/cloudcenter/ug/matlab-container-on-docker-hub.html
++DevShmSize = 536870912
 
-request_cpus = 4
-request_memory = 12GB
+request_cpus = 1
+request_memory = 1GB
 request_disk = 1GB
 
 arguments = "999"
