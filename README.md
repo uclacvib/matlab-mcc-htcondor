@@ -106,3 +106,7 @@ cat log/*.out
 # the values in argFloat should match the input arguments provided in `condor.sub`
 
 ```
+
+
++ NOTE: for medical image analysis, computer vision projects,
+  i highly recommend moving your matlab code to python.
