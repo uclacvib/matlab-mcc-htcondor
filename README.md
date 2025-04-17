@@ -107,6 +107,7 @@ cat log/*.out
 
 ```
 
++ NOTE: the container is user specific, cannot be shared among users when submitting to htcondor.
 
 + NOTE: for medical image analysis, computer vision projects,
   i highly recommend moving your matlab code to python.
