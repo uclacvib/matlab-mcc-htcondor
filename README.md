@@ -1,13 +1,14 @@
 # matlab-mcc-htcondor
-```
-a hello world for 
+
+This is a hello world repo for demoing
 compiling matlab code with mcc 
-and submit job to run the compiled code via htcondor
-```
+and submiting a job to run the compiled code via htcondor.
 
-+ clone this repo (or make a new repo and follow along the step below)
 
-+ setup git lfs for the binary file which we will later create with matlab mcc.
++ clone this repo (or make a new repo and follow along the steps below).
+
++ make a bin directory, and setup git lfs for the binary file which we will later create with matlab mcc and commit into the `bin` folder.
+
 ```
 mkdir bin
 git lfs track "quux"
@@ -17,13 +18,19 @@ git lfs track "quux"
     
     + add all required packages in env `ADDITIONAL_PRODUCTS`, `MATLAB_Compiler` is a must.
 
+    + remember to change the container path to your preferred uri and docker registry
+
 ```
-# remember to change the container path to your preferred uri and docker registry
+
 build_and_push_dev.sh
 
 ```
 
-+ develop/test your code
++ develop/test your code, in this demo repo we only have 4 matlab files:
+
+  + `qux.m` for soley running in matlab terminal
+  
+  + `quux.m, foobar/foo.m, foobar/bar.m` which later will be compiled.
 
 ```
 
@@ -32,12 +39,16 @@ docker run --init --rm -it --shm-size=512M \
   pangyuteng/matlab-foobar:dev \
   bash
 
-# start interactive matlab and enter credentials
+# start interactive matlab terminal and enter credentials
 cd /opt/myapp
 bash /bin/run.sh
+
+# run qux.m to ensure foobar/foo.m foobar/bar.m runs with no error.
+
 run('/opt/myapp/qux.m');
 
 # quux.m is the entry point, below run will fail since we did not provide any arguments
+
 run('/opt/myapp/quux.m');
 
 # note in quux.m, we removed the `addpath` from `qux.m`, mcc does not alow use of `addpath`!
@@ -65,7 +76,6 @@ cp run_quux.sh /opt/myapp/bin
 ```
 
 + commit compiled binary file and sh file to your repo in bin folder
-
 
 + build production contain to be used by condor
 
