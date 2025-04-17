@@ -5,7 +5,9 @@ compiling matlab code with mcc
 and submit job to run the compiled code via htcondor
 ```
 
-+ clone repo, setup git lfs for matlab binary
++ clone this repo (or make a new repo and follow along the step below)
+
++ setup git lfs for the binary file which we will later create with matlab mcc.
 ```
 mkdir bin
 git lfs track "quux"
@@ -16,6 +18,7 @@ git lfs track "quux"
     + add all required packages in env `ADDITIONAL_PRODUCTS`, `MATLAB_Compiler` is a must.
 
 ```
+# remember to change the container path to your preferred uri and docker registry
 build_and_push_dev.sh
 
 ```
@@ -34,12 +37,18 @@ cd /opt/myapp
 bash /bin/run.sh
 run('/opt/myapp/qux.m');
 
+# quux.m is the entry point, below run will fail since we did not provide any arguments
 run('/opt/myapp/quux.m');
+
+# note in quux.m, we removed the `addpath` from `qux.m`, mcc does not alow use of `addpath`!
+# in `quux.m`, we added a function with args, which will serve as the entrypoint cli.
+# compile the code along with its dependencies with `mcc`:
+
 mcc -v -R -nodisplay -R -singleCompThread -m /opt/myapp/quux.m -a /opt/myapp/foobar/*
 
 ```
 
-+ head in to running container and test the compiled code.
++ head into running container and test the compiled code.
 
 ```
 
@@ -61,7 +70,7 @@ cp run_quux.sh /opt/myapp/bin
 + build production contain to be used by condor
 
 ```
-
+# remember to change the container path to your preferred uri and docker registry
 build_and_push_prod.sh
 
 ```
