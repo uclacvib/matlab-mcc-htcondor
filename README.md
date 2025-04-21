@@ -4,6 +4,13 @@ This is a hello world repo for demoing
 compiling matlab code with mcc 
 and submiting a job to run the compiled code via htcondor.
 
+## references
+
++ https://wiki.orc.gmu.edu/mkdocs/How_to_Compile_MATLAB_on_Hopper/
+
++ https://portal.osg-htc.org/documentation/software_examples/matlab_runtime/tutorial-matlab-HelloWorld/
+
+## instructions
 
 + clone this repo (or make a new repo and follow along the steps below).
 
